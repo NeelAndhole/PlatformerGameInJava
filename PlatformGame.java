@@ -142,7 +142,7 @@ public class PlatformGame extends PApplet {
         if (characters.get(i) instanceof PlayableCharacter
             && (characters.get(i).getX() - characters.get(i).getWidth() / 2 > 0)) {
           characters.get(i).setXVelocity(-1 * X_SPEED);
-
+          ((PlayableCharacter) characters.get(i)).makePoseLeft();
         }
       }
     }
@@ -152,6 +152,7 @@ public class PlatformGame extends PApplet {
         if (characters.get(i) instanceof PlayableCharacter
             && (characters.get(i).getX() + characters.get(i).getWidth() / 2 < this.width)) {
           characters.get(i).setXVelocity(X_SPEED);
+          ((PlayableCharacter) characters.get(i)).makePoseRight();
         }
       }
     }
@@ -190,7 +191,7 @@ public class PlatformGame extends PApplet {
    * runs the in game logic checks
    */
   public void runLogicChecks() {
-    // TODO set x velocity of character to zero when the hit the side of the screen
+    // set x velocity of character to zero when the hit the side of the screen
     for (int i = 0; i < characters.size(); i++) {
       if (characters.get(i) instanceof PlayableCharacter
           && (characters.get(i).getX() - characters.get(i).getWidth() / 2 <= 0)) {
@@ -211,7 +212,7 @@ public class PlatformGame extends PApplet {
     // TODO check if the character has hit the side of one of the ground objects or the bottom of
     // one of the ground objects
 
-    // TODO check if character has hit the top of the ground when moving down
+    // check if character has hit the top of the ground when moving down
     for (int i = 0; i < characters.size(); i++) {
       if (characters.get(i) instanceof PlayableCharacter) {
         for (int j = 0; j < characters.size(); j++) {
@@ -227,7 +228,7 @@ public class PlatformGame extends PApplet {
     }
 
 
-    // TODO set y velocity of character to decrement when the character is not touching ground
+    // set y velocity of character to decrement when the character is not touching ground
     {// block to keep local variables
       boolean isTouchingGround = false;
       for (int i = 0; i < characters.size(); i++) {
@@ -248,7 +249,7 @@ public class PlatformGame extends PApplet {
       }
     }
 
-    // TODO remove ground from the list of characters when they leave the screen
+    // remove ground from the list of characters when they leave the screen
     for (int i = 0; i < characters.size(); i++) {
       if (characters.get(i) instanceof Ground
           && characters.get(i).getX() + characters.get(i).getWidth() / 2 <= 0) {

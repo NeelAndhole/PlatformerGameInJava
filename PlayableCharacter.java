@@ -52,6 +52,9 @@ public class PlayableCharacter extends GenericGameObject {
   public void jump() {
     this.isOnGround = false;
     this.setYVelocity(JUMP_LIFT_OFF);
+    if (currentPose < 2) {
+      currentPose += 2;
+    }
   }
 
   /**
@@ -69,18 +72,28 @@ public class PlayableCharacter extends GenericGameObject {
   public void land() {
     this.isOnGround = true;
     this.setYVelocity(0);
+    if (currentPose > 1) {
+      currentPose -= 2;
+    }
+  }
+
+
+  /**
+   * makes the characters pose the left style
+   */
+  public void makePoseLeft() {
+    if (currentPose == 1 || currentPose == 3) {
+      currentPose--;
+    }
   }
 
   /**
-   * updates the pose to one of the 4 preset options 0-3
-   * 
-   * @param x- the integer between 0 and 3
+   * makes the characters pose the Right style
    */
-  public void updatePose(int x) {
-    if (x > 3 || x < 0) {
-      throw new IllegalArgumentException("Not legal pose");
+  public void makePoseRight() {
+    if (currentPose == 0 || currentPose == 2) {
+      currentPose++;
     }
-    currentPose = x;
   }
 
   /**

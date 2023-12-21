@@ -144,7 +144,7 @@ public class GenericGameObject {
    */
   public void draw() {
     processing.image(image, getX(), getY());
-    // hitbox.visualizeHitbox(); // TODO remove
+    // hitbox.visualizeHitbox(); // remove
   }
 
   /**
